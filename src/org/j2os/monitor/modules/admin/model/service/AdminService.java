@@ -19,37 +19,34 @@ public class AdminService implements ServiceInterface<Admin> {
     }
 
     @Override
-    public Admin add(Admin admin) {
+    public void add(Admin admin) {
         this.adminRepository.save(admin);
-        return this.adminRepository.findOne(Admin.class,admin.getId());
     }
 
     @Override
     @Transactional
-    public Admin update(Admin admin) {
+    public void update(Admin admin) {
         this.adminRepository.save(admin);
-        return this.adminRepository.findOne(Admin.class,admin.getId());
-
     }
 
     @Override
     public List<Admin> findAll() {
-        return null;
+        return this.adminRepository.findAll(Admin.class);
     }
 
     @Override
     public Admin findOne(Admin admin) {
-        return null;
+        return this.adminRepository.findOne(Admin.class,admin.getId());
     }
 
     @Override
     public Admin findById(long id) {
-        return null;
+        return this.adminRepository.findOne(Admin.class,id);
     }
 
     @Override
-    public List<Admin> delete(Admin admin) {
-        return null;
+    public void delete(Admin admin) {
+        this.adminRepository.delete(admin);
     }
 
 }

@@ -22,19 +22,17 @@ public class AlarmNoteService implements ServiceInterface<AlarmNote> {
 
     @Override
     @Transactional
-    public AlarmNote add(AlarmNote alarmNote) {
+    public void add(AlarmNote alarmNote) {
         this.alarmNoteRepository.save(alarmNote);
-        return this.alarmNoteRepository.findOne(AlarmNote.class,alarmNote.getId());
     }
 
     @Override
     @Transactional
-    public AlarmNote update(AlarmNote alarmNote) throws InvocationTargetException, IllegalAccessException {
+    public void update(AlarmNote alarmNote) throws InvocationTargetException, IllegalAccessException {
         AlarmNote exist = this.alarmNoteRepository.findOne(AlarmNote.class,alarmNote.getId());
         MyBeanCopy myBeanCopy = new MyBeanCopy();
         myBeanCopy.copyProperties(exist, alarmNote);
         this.alarmNoteRepository.save(exist);
-        return exist;
     }
 
     @Override
@@ -44,9 +42,8 @@ public class AlarmNoteService implements ServiceInterface<AlarmNote> {
 
     @Override
     @Transactional
-    public List<AlarmNote> delete(AlarmNote alarmNote) {
+    public void delete(AlarmNote alarmNote) {
         this.alarmNoteRepository.delete(alarmNote);
-        return this.alarmNoteRepository.findAll(AlarmNote.class);
     }
 
     @Override

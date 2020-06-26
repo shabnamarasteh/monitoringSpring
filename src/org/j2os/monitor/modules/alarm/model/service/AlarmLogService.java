@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Service
-public class AlarmLogService  implements ServiceInterface<AlarmLog> {
+public class AlarmLogService implements ServiceInterface<AlarmLog> {
     private AlarmLogRepository alarmLogRepository;
     @Autowired
     public AlarmLogService(AlarmLogRepository alarmLogRepository) {
@@ -22,16 +22,17 @@ public class AlarmLogService  implements ServiceInterface<AlarmLog> {
 
     @Override
     @Transactional
-    public AlarmLog add(AlarmLog alarmLog) {
+    public void add(AlarmLog alarmLog) {
         this.alarmLogRepository.save(alarmLog);
-        return this.alarmLogRepository.findOne(AlarmLog.class,alarmLog.getId());
     }
 
     @Override
     @Transactional
-    public AlarmLog update(AlarmLog alarmLog) throws InvocationTargetException, IllegalAccessException {
-        this.alarmLogRepository.save(alarmLog);
-        return this.alarmLogRepository.findOne(AlarmLog.class,alarmLog.getId());
+    public void update(AlarmLog alarmLog) throws InvocationTargetException, IllegalAccessException {
+        AlarmLog exist = this.alarmLogRepository.findOne(AlarmLog.class,alarmLog.getId());
+        MyBeanCopy myBeanCopy = new MyBeanCopy();
+        myBeanCopy.copyProperties(exist, alarmLog);
+        this.alarmLogRepository.save(exist);
     }
 
     @Override
@@ -41,9 +42,8 @@ public class AlarmLogService  implements ServiceInterface<AlarmLog> {
 
     @Override
     @Transactional
-    public List<AlarmLog> delete(AlarmLog alarmLog) {
+    public void delete(AlarmLog alarmLog) {
         this.alarmLogRepository.delete(alarmLog);
-        return this.alarmLogRepository.findAll(AlarmLog.class);
     }
 
     @Override
