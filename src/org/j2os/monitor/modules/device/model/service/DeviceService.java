@@ -52,6 +52,11 @@ public class DeviceService implements ServiceInterface<Device> {
     }
 
     @Override
+    public Boolean existsById(long id) {
+        return this.deviceRepository.existsById(Device.class,id);
+    }
+
+    @Override
     public Device findById(long id) {
         return this.deviceRepository.findOne(Device.class,id);
     }

@@ -32,4 +32,12 @@ public class CrudRepository<T,I> {
         System.out.println("FindOne Entity");
         return entityManager.find(tClass, id);
     }
+
+    public Boolean existsById(Class<T> tClass,I id) {
+        System.out.println("FindOne Entity");
+        if(entityManager.find(tClass,id) != null){
+            return true;
+        }
+        return false;
+    }
 }

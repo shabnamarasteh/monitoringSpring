@@ -53,6 +53,11 @@ public class RackService implements ServiceInterface<Rack> {
     }
 
     @Override
+    public Boolean existsById(long id) {
+        return this.rackRepository.existsById(Rack.class,id);
+    }
+
+    @Override
     public Rack findById(long id) {
         return this.rackRepository.findOne(Rack.class,id);
     }

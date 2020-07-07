@@ -9,5 +9,6 @@ public interface ServiceInterface<T> {
     List<T> findAll();
     void delete(T t);
     T findOne(T t);
+    Boolean existsById(long id);
     T findById(long id);
 }

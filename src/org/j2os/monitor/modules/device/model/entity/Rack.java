@@ -1,10 +1,11 @@
 package org.j2os.monitor.modules.device.model.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table
-public class Rack {
+public class Rack implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="rack_seq")
     @SequenceGenerator(name="rack_seq", sequenceName="rack_seq", allocationSize=1)
