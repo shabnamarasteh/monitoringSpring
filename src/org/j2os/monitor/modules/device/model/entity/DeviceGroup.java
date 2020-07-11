@@ -42,4 +42,12 @@ public class DeviceGroup {
     public void setName(String name) {
         this.name = name;
     }
+
+    public DeviceModel getDeviceModel() {
+        return deviceModel;
+    }
+
+    public void setDeviceModel(DeviceModel deviceModel) {
+        this.deviceModel = deviceModel;
+    }
 }
